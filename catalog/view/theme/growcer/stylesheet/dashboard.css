@@ -1,0 +1,134 @@
+.big-bar {
+	background: #f95e2e;
+}
+.big-bar .title {
+	color: #fff;
+	font-size: 24px;
+	padding: 15px 0;
+}
+.notifications {
+	text-align: right;
+}
+.notifications ul li {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	margin: 15px 15px;
+}
+.notifications ul li:last-child {
+	margin-right: 0;
+	padding-right: 0;
+}
+.notifications .icn-svg svg {
+	width: 25px;
+	height: 25px;
+}
+.notifications .icn-svg svg path {
+	fill: #fff;
+}
+.notifications span.count {
+	background: #fff;
+	border-radius: 50%;
+	color: #f95e2e;
+	font-size: 13px;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	right: -12px;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: 600;
+	line-height: 20px;
+}
+.dash-pages {
+	padding-top: 20px;
+}
+.left-panel {
+	border: 1px solid #e7e5e6;
+	border-radius: 3px;
+}
+.left-panel .user-wrapper {
+	padding: 15px;
+}
+.user-wrapper {
+	display: table;
+	width: auto;
+}
+.user-wrapper .avatar {
+	border: solid 2px #e7e5e6;
+	border-radius: 50%;
+	overflow: hidden;
+	float: left;
+	margin-right: 15px;
+}
+.user-wrapper.size85 .avatar {
+	width: 85px;
+	height: 85px;
+}
+.user-wrapper .detail {
+	display: inline-block;
+	vertical-align: middle;
+}
+.user-wrapper .name {
+	color: #000;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 5px 0;
+}
+.user-wrapper .toggle a {
+	color: #737373;
+	font-size: 14px;
+	padding: 5px 0;
+}
+.user-wrapper .toggle .icn-drop {
+	background: url(../images/arrow-down.png) no-repeat 0 0;
+	width: 9px;
+	height: 5px;
+	display: inline-block;
+	margin: 0 5px;
+}
+.nav-list {
+}
+.nav-list li {
+	display: table;
+	width: 100%;
+	border-top: 1px solid #e7e5e6;
+}
+.nav-list li:last-child {
+	border-bottom: none;
+}
+.nav-list li a {
+	display: block;
+}
+.nav-list li .icn-svg {
+	width: 55px;
+	height: 58px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.nav-list li .icn-svg svg {
+	width: 25px;
+	height: 25px;
+	margin: 16px auto;
+}
+.nav-list li .icn-svg svg path {
+	fill: #000;
+}
+.nav-list li a:hover, .nav-list li.active a {
+	color: #f95e2e;
+}
+.nav-list li a:hover .icn-svg, .nav-list li.active a .icn-svg {
+	background: #f95e2e;
+	-webkit-transition: all ease .3s;
+	-moz-transition: all ease .3s;
+	-o-transition: all ease .3s;
+	transition: all ease .3s;
+}
+.nav-list li a:hover .icn-svg svg path, .nav-list li.active a .icn-svg svg path {
+	fill: #fff;
+}
+
+.overview-boxes{}

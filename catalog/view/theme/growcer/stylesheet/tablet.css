@@ -1,0 +1,49 @@
+
+@media screen and (max-width: 1200px) {
+.top-head > h2 {
+	font-size: 34px;
+}
+.top-head > h2 span {
+	font-size: 30px;
+}
+.footer-block > h3 {
+	font-size: 20px;
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+.top-head > h2 {
+	font-size: 28px;
+}
+.top-head > h2 span {
+	font-size: 24px;
+}
+.footer-block > h3 {
+	font-size: 18px;
+}
+.offer_count > h2 {
+	font-size: 60px;
+}
+.offer_count > h2, .offer_count > h3, .footer-block > h3 {
+	font-size: 16px;
+}
+.product-slide-block > .grid {
+	width: 100%;
+}
+.product-slide-block > .grid.pull_right {
+	margin-top: 15px;
+}
+.features-list > li {
+	padding: 10px;
+	width: 50%;
+}
+.advertise-list .grid {
+	padding: 0 6px 15px;
+}
+.bottom-margin {
+	margin-bottom: 10px;
+}
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1050px) {
+}

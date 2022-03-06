@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<code>cws_customer_group_methods-2.0.0</code>
+	<name>Customer Group Shipping/Payment Methods for OpenCart 2.0</name>
+	<version>1.0.0</version>
+	<author>Sites n Stores (Siven)</author>
+	<link>http://www.sitesnstores.com.au</link>
+
+		<file path="system/library/cart.php">
+			<operation>
+					<search position="replace"><![CDATA[
+					$this->response->redirect($this->url->link('account/success'));
+					]]></search>
+					<add><![CDATA[
+				]]></add>
+			</operation>
+		</file>				
+		<file path="catalog/model/extension/extension.php">
+		<operation>
+			<search><![CDATA[return $query->rows;]]></search>
+			<add position="before"><![CDATA[		
+		if ($type == 'shipping' || $type == 'payment') {
+			if ($this->customer->isLogged()) {
+				$customer_group_id = $this->customer->getGroupId();
+			} else {
+				$customer_group_id = $this->config->get('config_customer_group_id');
+			}
+
+			$methods_query = $this->db->query("SELECT " . $type . "_methods FROM " . DB_PREFIX . "customer_group WHERE customer_group_id = '" . (int) $customer_group_id . "'");
+			
+			$available_methods =  unserialize($methods_query->row[$type . '_methods']);
+
+			foreach ($query->rows as $key => $row) {
+				if (!in_array($row['code'], $available_methods)) {
+					unset($query->rows[$key]);
+				}
+			}
+			return $query->rows;
+		}else{
+			return $query->rows;
+		}
+		]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/controller/customer/customer_group.php">
+		<operation>
+			<search position="after"><![CDATA[$data['entry_name'] = $this->language->get('entry_name');]]></search>
+			<add><![CDATA[		$data['entry_payment_methods'] = $this->language->get('entry_payment_methods');
+		$data['entry_shipping_methods'] = $this->language->get('entry_shipping_methods');
+        $data['text_select_all'] = $this->language->get('text_select_all');
+		$data['text_unselect_all'] = $this->language->get('text_unselect_all');]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[if (isset($this->request->post['sort_order'])) {]]></search>
+			<add><![CDATA[		$this->load->model('extension/extension');
+
+		$results = $this->model_extension_extension->getInstalled('payment');
+
+		$payment_methods = array();
+
+		foreach ($results as $result) {
+			$extension = basename($result, '.php');
+			$this->load->language('payment/' . $extension);
+			$payment_methods[] = array(
+				'code' => $result,
+				'name' => $this->language->get('heading_title'),
+			);
+		}
+
+		$data['payment_methods'] = $payment_methods;
+
+		if (isset($this->request->post['payment_methods'])) {
+			$data['selected_payment_methods'] = $this->request->post['payment_methods'];
+		} elseif (isset($customer_group_info['payment_methods']) && ($customer_group_info['payment_methods'] != '')) {
+			$data['selected_payment_methods'] = unserialize($customer_group_info['payment_methods']);
+		} else {
+			$data['selected_payment_methods'] = array();
+		}
+
+		$results = $this->model_extension_extension->getInstalled('shipping');
+
+		$shipping_methods = array();
+
+		foreach ($results as $result) {
+			$extension = basename($result, '.php');
+			$this->load->language('shipping/' . $extension);
+			$shipping_methods[] = array(
+				'code' => $result,
+				'name' => $this->language->get('heading_title'),
+			);
+		}
+
+		$data['shipping_methods'] = $shipping_methods;
+
+		if (isset($this->request->post['shipping_methods'])) {
+			$data['selected_shipping_methods'] = $this->request->post['shipping_methods'];
+		} elseif (isset($customer_group_info['shipping_methods']) && ($customer_group_info['shipping_methods'] != '')) {
+			$data['selected_shipping_methods'] = unserialize($customer_group_info['shipping_methods']);
+		} else {
+			$data['selected_shipping_methods'] = array();
+		}
+		]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/language/*/customer/customer_group.php">
+		<operation>
+			<search position="before"><![CDATA[$_['entry_name']]]></search>
+			<add><![CDATA[$_['entry_payment_methods'] = 'Payment Methods:';
+$_['entry_shipping_methods'] = 'Shipping Methods:';
+]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/model/customer/customer_group.php">
+		<operation>
+			<search position="after"><![CDATA[$customer_group_id = $this->db->getLastId();]]></search>
+			<add><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer_group SET payment_methods = '" . (isset($data['payment_methods']) ? serialize($data['payment_methods']) : '') . "', shipping_methods = '" . (isset($data['shipping_methods']) ? serialize($data['shipping_methods']) : '') . "' WHERE customer_group_id = '" . (int)$customer_group_id . "'");]]></add>
+		</operation>		
+		<operation>
+			<search position="after"><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer_group SET ]]></search>
+			<add><![CDATA[$this->db->query("UPDATE " . DB_PREFIX . "customer_group SET payment_methods = '" . (isset($data['payment_methods']) ? serialize($data['payment_methods']) : '') . "', shipping_methods = '" . (isset($data['shipping_methods']) ? serialize($data['shipping_methods']) : '') . "' WHERE customer_group_id = '" . (int)$customer_group_id . "'");]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				public function getCustomerGroup($customer_group_id) {
+			]]></search>
+			<add><![CDATA[
+			$installed_query = $this->db->query("SHOW COLUMNS FROM " . DB_PREFIX . "customer_group LIKE 'payment_methods'");
+
+			$installed = $installed_query->num_rows ? true : false;
+
+			if (!$installed) {
+				$this->db->query("ALTER TABLE " . DB_PREFIX . "customer_group ADD `payment_methods` LONGTEXT NULL AFTER `approval` , ADD `shipping_methods` LONGTEXT NULL AFTER `payment_methods` ");
+			}
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="admin/view/template/customer/customer_group_form.tpl">
+		<operation>
+			<search position="before"><![CDATA[</form>]]></search>
+			<add><![CDATA[          <div class="form-group">
+            <label class="col-sm-2 control-label"><?php echo $entry_shipping_methods; ?></label>
+            <div class="col-sm-10">
+              <div class="well well-sm" style="height: 150px; overflow: auto;">
+                <?php foreach ($shipping_methods as $shipping_method) { ?>
+                <div class="checkbox">
+                  <label>
+                    <?php if (in_array($shipping_method['code'],$selected_shipping_methods)) { ?>
+                    <input type="checkbox" name="shipping_methods[]" value="<?php echo $shipping_method['code']; ?>" checked="checked" />
+                    <?php echo $shipping_method['name']; ?>
+                    <?php } else { ?>
+                    <input type="checkbox" name="shipping_methods[]" value="<?php echo $shipping_method['code']; ?>" />
+                    <?php echo $shipping_method['name']; ?>
+                    <?php } ?>
+                  </label>
+                </div>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"><?php echo $entry_payment_methods; ?></label>
+            <div class="col-sm-10">
+              <div class="well well-sm" style="height: 150px; overflow: auto;">
+                <?php foreach ($payment_methods as $payment_method) { ?>
+                <div class="checkbox">
+                  <label>
+                    <?php if (in_array($payment_method['code'],$selected_payment_methods)) { ?>
+                    <input type="checkbox" name="payment_methods[]" value="<?php echo $payment_method['code']; ?>" checked="checked" />
+                    <?php echo $payment_method['name']; ?>
+                    <?php } else { ?>
+                    <input type="checkbox" name="payment_methods[]" value="<?php echo $payment_method['code']; ?>" />
+                    <?php echo $payment_method['name']; ?>
+                    <?php } ?>
+                  </label>
+                </div>
+                <?php } ?>
+              </div>
+            </div>
+          </div>]]></add>
+		</operation>
+	</file>
+
+</modification>

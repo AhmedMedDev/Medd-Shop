@@ -1,0 +1,150 @@
+
+@media screen and (max-width: 1200px) {
+	.top-head > h2 {
+		font-size: 34px;
+	}
+	.top-head > h2 span {
+		font-size: 30px;
+	}
+	.footer-block > h3 {
+		font-size: 20px;
+	}
+	.productsListing.boxes-4 h2.title-name{
+		width: 140px;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+.productsListing.boxes-4 h2.title-name{
+	width: 140px;
+}	
+.themeBtn, a.themeBtn, button.themeBtn, input.themeBtn {
+/*	padding: 6px 5px;	*/
+}
+.contact_info li {
+	margin: 0 auto;
+	display: table;
+}
+.top-head > h2 {
+	font-size: 28px;
+}
+.top-head > h2 span {
+	font-size: 24px;
+}
+.footer-block > h3 {
+	font-size: 18px;
+}
+.offer_count > h2 {
+	font-size: 60px;
+}
+.offer_count > h2, .offer_count > h3, .footer-block > h3 {
+	font-size: 16px;
+}
+.product-slide-block > .grid {
+	width: 100%;
+}
+.product-slide-block > .grid.pull_right {
+	margin-top: 15px;
+}
+.features-list > li {
+	padding: 10px;
+	width: 50%;
+}
+.advertise-list .grid {
+	padding: 0 6px 15px;
+}
+.bottom-margin {
+	margin-bottom: 10px;
+}
+.left-panel .user-wrapper {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+.user-wrapper .avatar {
+	margin: 0 auto;
+	float: none;
+	display: block;
+}
+.user-wrapper .detail {
+	display: block;
+}
+.nav-list li a {
+	padding: 5px 0;
+}
+.nav-list li {
+	text-align: center;
+	display: block;
+	width: auto;
+}
+.nav-list li .icn-svg {
+	display: block;
+	margin: 0 auto;
+	height: auto;
+	width: auto;
+}
+.nav-list li a:hover .icn-svg, .nav-list li.active a .icn-svg {
+	background: none;
+}
+.nav-list li a:hover .icn-svg svg path {
+	fill: #f95e2e;
+}
+.nav-list li .icn-svg svg {
+	margin: 5px auto;
+}
+.nav-list li a:hover .icn-svg svg path, .nav-list li.active a .icn-svg svg path {
+	fill: #f95e2e;
+}
+.address-bar ul li {
+	width: 48%;
+}
+.tbl-scroll {
+	overflow-x: scroll;
+}
+a.addtocart-btn, .addtocart-btn {
+	min-width: 0;
+}
+.tbl-comparison .themeBtn {
+	/*display: block;*/
+	margin: 0 auto 5px;
+	text-align: center;
+}
+.bottm_ftr .pull_left, .bottm_ftr .pull_right {
+	float: none;
+	text-align: center;
+	padding: 2px 0;
+}
+#footer p.copy_rght {
+	text-align: center;
+}
+/*31August16*/
+.rating.size30 svg {
+height: 25px;
+width: 25px;
+}
+/*.nav-list li a{text-align: left;}*/
+.siteForm #button-voucher, .siteForm #button-coupon {
+  padding: 10px 12px;
+}
+.desc-right {
+  display:block;
+  padding:20px 0 0;
+  width:auto;
+}
+    .Token > span {
+  padding: 0 20px 0 0;
+}
+.link-list > li {
+  padding: 0 10px;
+}
+    .btm-links a {font-size: 15px;padding: 15px 10px;}
+    .item-wraper {padding: 25px 10px;}
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1050px) {
+.tbl-comparison .themeBtn {
+	display: block;
+	margin: 0 auto 5px;
+	text-align: center;
+}
+}

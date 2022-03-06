@@ -1,0 +1,19 @@
+.htaccess
+/config.php
+admin/config.php
+
+/admin/view/image
+
+/image
+/system/storage/*
+
+# restore folder for demo site only
+restore/db_backup/
+restore/files_and_folders/
+
+# vQmod log files
+vqmod/logs/*
+# vQmod cache files
+vqmod/vqcache/*
+vqmod/checked.cache
+vqmod/mods.cache

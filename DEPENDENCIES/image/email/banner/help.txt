@@ -1,0 +1,5 @@
+password.jpg banner image file name for password template
+register.jpg banner image file name for register template
+order.jpg banner image file name for order template
+review.jpg banner image file name for review template
+

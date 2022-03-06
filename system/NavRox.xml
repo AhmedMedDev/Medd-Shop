@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Delivery Timing Slots</id>
+	<version>2.0.0.0</version>
+	<vqmver>2.2.1</vqmver>
+	<author>inforox.com</author>
+	
+	<file name="catalog/controller/checkout/checkout.php">
+		<operation>
+			<search position="replace" offset="4"><![CDATA[if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {]]></search>
+			<add><![CDATA[
+				
+				$this->load->model('slot/timing');
+				$extension = $this->model_slot_timing->getInstalled("module");     
+				if (in_array("timeslot", $extension)) {    
+					
+					$this->model_slot_timing->setTables(); 
+					$data['Intervals'] = $this->model_slot_timing->getTime();   
+					
+					
+					$template = "timeslot";     
+					
+					$this->load->language('module/timeslot');
+					$data['text_checkout_option'] = $this->language->get('text_checkout_option');
+					$data['text_checkout_account'] = $this->language->get('text_checkout_account');
+					$data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
+					$data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
+					$data['text_checkout_shipping_method'] = $this->language->get('text_checkout_shipping_method');
+					$data['text_checkout_delivery_time'] = $this->language->get('text_checkout_delivery_time');
+					$data['text_checkout_payment_method'] = $this->language->get('text_checkout_payment_method');
+					$data['text_checkout_confirm'] = $this->language->get('text_checkout_confirm');
+					
+					
+					$this->template = 'default/template/module/timeslot/'.$template.'.tpl';
+					$this->response->setOutput($this->load->view($this->template, $data));  
+				
+				} else {
+				 
+					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/checkout.tpl')) {
+						$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/checkout.tpl', $data));
+					} else { 
+						$this->response->setOutput($this->load->view('default/template/checkout/checkout.tpl', $data)); 
+					}
+					 
+				}     
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[$data['header'] = $this->load->controller('common/header');]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/controller/checkout/confirm.php">
+		<operation>
+			<search position="replace" offset="4"><![CDATA[if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/confirm.tpl')) { ]]></search>
+			<add><![CDATA[
+				
+				$data['text_delivery_time'] = $this->language->get('text_delivery_time');
+				$this->load->model('slot/timing');
+				
+				$extension = $this->model_slot_timing->getInstalled("module");     
+				 
+				if (in_array("timeslot", $extension)) {    
+				 
+					$data['timing'] = $this->session->data['delivery_time'];  
+					$template = "confirm";     
+					$this->template = 'default/template/module/timeslot/'.$template.'.tpl';
+					$this->response->setOutput($this->load->view($this->template, $data));
+					  
+				} else {
+				 
+					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/confirm.tpl')) {
+						$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/checkout/confirm.tpl', $data));
+					} else { 
+						$this->response->setOutput($this->load->view('default/template/checkout/confirm.tpl', $data)); 
+					}				
+				
+				}        
+			]]></add>
+		</operation>		
+	</file>
+	  
+	<file name="catalog/controller/payment/cod.php">
+		<operation>
+			<search position="before" offset="4"><![CDATA[ if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/cod.tpl')) { ]]></search>
+			<add><![CDATA[
+				
+				
+				$data['continue'] = $this->url->link('module/timeslot/success');
+				
+				if (in_array("timeslot", $extension)) {
+					
+					$this->response->setOutput($this->load->view('default/template/module/timeslot/cod.tpl', $data));
+				
+				} else {
+				
+					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/cod.tpl')) {
+						$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/payment/cod.tpl', $data));
+					} else { 
+						$this->response->setOutput($this->load->view('default/template/payment/cod.tpl', $data)); 
+					}
+					
+				}
+			]]></add>
+		</operation>		
+	</file>
+	  
+	<file name="catalog/controller/account/order.php">
+		<operation>
+			<search position="replace" offset="4"><![CDATA[ if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_info.tpl')) { ]]></search>
+			<add><![CDATA[
+				
+				$data['text_delivery_time'] = $this->language->get('text_delivery_time');
+				$this->load->model('slot/timing');
+				
+				$extension = $this->model_slot_timing->getInstalled("module");     
+				
+				if (in_array("timeslot", $extension)) {   
+				
+					$oreder_id = $_GET['order_id'];            
+					$this->load->model('module/deliveryTime/order');
+					$data['delivery_time'] = $this->model_module_deliveryTime_order->getDeliveryTime($oreder_id); 
+					$this->response->setOutput($this->load->view('default/template/module/timeslot/order_info.tpl', $data));
+										  
+				} else {
+				
+					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_info.tpl')) {
+						$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/order_info.tpl', $data));
+					} else { 
+						$this->response->setOutput($this->load->view('default/template/account/order_info.tpl', $data)); 
+					}
+				 
+				}    
+				 
+			]]></add> 
+		</operation>		
+	</file>
+	
+	<file name="catalog/controller/checkout/success.php">
+		<operation>
+			<search position="replace" offset="4"><![CDATA[ if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) { ]]></search>
+			<add><![CDATA[
+				
+				$data['text_delivered_on'] = $this->language->get('text_delivered_on');
+				// if module enable or not   
+				$this->load->model('slot/timing');
+				$extension = $this->model_slot_timing->getInstalled("module");     
+				
+				if (in_array("timeslot", $extension)) {   
+					
+					$this->load->model('module/deliveryTime/order');
+					$data['delivery_time'] = $this->session->data['delivery_time'];
+					$this->response->setOutput($this->load->view('default/template/module/timeslot/success.tpl', $data));
+					  
+				} else {
+				
+					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
+						$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/common/success.tpl', $data));
+					} else { 
+						$this->response->setOutput($this->load->view('default/template/common/success.tpl', $data)); 
+					}
+					
+				}    
+				  
+			]]></add>
+		</operation>		
+	</file>
+
+</modification>

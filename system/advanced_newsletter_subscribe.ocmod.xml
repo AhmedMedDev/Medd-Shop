@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Advanced Newsletter Subscribe</name>
+    <code>adv_newsletter</code>
+    <version>1.0</version>
+    <author>anh.to87@gmail.com</author>
+    <link>http://www.opcartstore.com</link>
+    <file path="admin/controller/marketing/contact.php">
+        <operation>
+            <search index="0" trim="true">
+                <![CDATA[$results = $this->model_sale_customer->getCustomers($customer_data);]]>
+            </search>
+            <add position="after">
+                <![CDATA[
+                        $this->load->model('module/adv_newsletter');
+                        $emails_newsletter    = $this->model_module_adv_newsletter->getEmails();
+
+                        $results = array_merge($results, $emails_newsletter);
+                ]]>
+            </add>
+        </operation>
+    </file>
+</modification>

@@ -1,0 +1,135 @@
+@font-face {
+	font-family: "icons";
+	src: url("../fonts/icons.eot?c0a3425584e118930dc500a7da4134ce");
+	src: url("../fonts/icons.eot?#iefix") format("embedded-opentype"), url("../fonts/icons.woff?c0a3425584e118930dc500a7da4134ce") format("woff"), url("../fonts/icons.ttf?c0a3425584e118930dc500a7da4134ce") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+.icon {
+	font-family: "icons";
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	font-weight: normal;
+	font-style: normal;
+	speak: none;
+	text-decoration: inherit;
+	text-transform: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-flickr:before {
+	content: "\f107";
+}
+.ghost-wrap {
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
+.ghost-wrap h2 {
+	font-size: 60px;
+	color: #000;
+	margin: 10px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+}
+.ghost-wrap p {
+	font-size: 18px;
+	font-weight: 400;
+	color: #000;
+	font-style: italic;
+}
+.ghost-wrap p a{ color:#f95e2e;}
+.not-found {
+	background: #d5dde1;
+}
+.not-found .row {
+	margin-top: 25%; margin-bottom:15%;
+}
+.not-found .ghost {
+	margin: 40px auto;
+	width: 105px;
+}
+.not-found .ghost .body {
+	animation: 3s ease-in-out 0s alternate none infinite running ghost-float;
+	background: url(../images/retina/ghost.svg) no-repeat 0 0;
+	background-size: 100% auto;
+	border-radius: 70px 70px 0 0;
+	display: block;
+	height: 135px;
+	padding-top: 35px;
+	position: relative;
+	text-align: center;
+}
+.not-found .ghost .body i {
+	animation: 4s ease 0s normal none infinite running ghost-blink;
+	color: #fff;
+	display: inline-block;
+	font-size: 40px;
+	position: relative;
+	transition: all 0.1s ease 0s;
+}
+.not-found .ghost .body::after, .not-found .ghost::after {
+	content: " ";
+	display: block;
+}
+.not-found .ghost .body i.left {
+	margin-left: -25px;
+}
+.not-found .ghost .body i.right {
+	margin-right: -25px;
+}
+.not-found .ghost .body i.bottom {
+	margin-top: 15px;
+}
+.not-found .ghost .body i.top {
+	margin-top: -25px;
+}
+.not-found .ghost .body i.top.left, .not-found .ghost .body i.top.right {
+	margin-top: -15px;
+}
+/*
+.not-found .ghost .body::after {
+	
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTcnIGhlaWdodD0nMTcnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycgIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz4KCTxsaW5lYXJHcmFkaWVudCBpZD0nZzEnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzAlJz4KCQk8c3RvcCBvZmZzZXQ9JzAlJyBzdHlsZT0nc3RvcC1jb2xvcjojOTk5OTk5O3N0b3Atb3BhY2l0eToxJyAvPgoJCTxzdG9wIG9mZnNldD0nMTAwJScgc3R5bGU9J3N0b3AtY29sb3I6I2ZiZGE1OTtzdG9wLW9wYWNpdHk6MCcgLz4KCTwvbGluZWFyR3JhZGllbnQ+Cgk8bGluZWFyR3JhZGllbnQgaWQ9J2cyJyB4MT0nMCUnIHkxPScwJScgeDI9JzAlJyB5Mj0nMTAwJSc+CgkJPHN0b3Agb2Zmc2V0PScwJScgc3R5bGU9J3N0b3AtY29sb3I6Izk5OTk5OTtzdG9wLW9wYWNpdHk6MScgLz4KCQk8c3RvcCBvZmZzZXQ9JzEwMCUnIHN0eWxlPSdzdG9wLWNvbG9yOiNmYmRhNTk7c3RvcC1vcGFjaXR5OjAnIC8+Cgk8L2xpbmVhckdyYWRpZW50PgoJPHJhZGlhbEdyYWRpZW50IGlkPSdnMycgY3g9JzAlJyBjeT0nMCUnIHI9JzEwMCUnPgoJCTxzdG9wIG9mZnNldD0nMCUnIHN0eWxlPSdzdG9wLWNvbG9yOiM5OTk5OTk7c3RvcC1vcGFjaXR5OjEnIC8+CgkJPHN0b3Agb2Zmc2V0PScxMDAlJyBzdHlsZT0nc3RvcC1jb2xvcjojZmJkYTU5O3N0b3Atb3BhY2l0eTowJyAvPgoJPC9yYWRpYWxHcmFkaWVudD4KCTxnIHRyYW5zZm9ybT0ncm90YXRlKDQ1KSB0cmFuc2xhdGUoMjEuMiAtNDkuNSknPgoJCTxyZWN0IHg9Jy01MCUnIHk9Jy01MCUnIHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbGw9JyNmZmZmZmYnIC8+CgkJPHJlY3QgeD0nNTAlJyB5PSctNTAlJyB3aWR0aD0nMCUnIGhlaWdodD0nMTAwJScgZmlsbD0ndXJsKCNnMSknIC8+CgkJPHJlY3QgeD0nLTUwJScgeT0nNTAlJyB3aWR0aD0nMTAwJScgaGVpZ2h0PScwJScgZmlsbD0ndXJsKCNnMiknIC8+CgkJPHJlY3QgeD0nNTAlJyB5PSc1MCUnIHdpZHRoPScwJScgaGVpZ2h0PScwJScgZmlsbD0ndXJsKCNnMyknIC8+Cgk8L2c+Cjwvc3ZnPg==");
+	
+	background-position: center top;
+	background-repeat: repeat-x;
+	bottom: -9px;
+	height: 10px;
+	position: absolute;
+	width: 100%;
+}*/
+.not-found .ghost::after {
+	animation: 3s ease-in-out 0s alternate none infinite running shadow-fade;
+	background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+	border-radius: 50%;
+	height: 15px;
+	margin-top: 20px;
+}
+ @keyframes ghost-float {
+0% {
+ transform: translateY(0px);
+}
+100% {
+ transform: translateY(-15px);
+}
+}
+@keyframes shadow-fade {
+0% {
+ opacity: 1;
+}
+100% {
+ opacity: 0.3;
+}
+}
+@keyframes ghost-blink {
+0% {
+ transform: scale(1, 0);
+}
+100%, 5% {
+ transform: scale(1, 1);
+}
+}

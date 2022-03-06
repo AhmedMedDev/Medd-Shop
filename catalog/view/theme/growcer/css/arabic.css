@@ -1,0 +1,111 @@
+
+body {
+	overflow-x: hidden;
+}
+
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: right;
+}
+/* .two-grid > .grid{
+	float: right;
+} */
+.product-slide-block .new-product-block .two-grid > .grid{
+	float: right;
+}
+.pull_left, .pull-left {
+	float: right;
+}
+.pull_right, .pull-right {
+	float: left;
+}
+.offerblock .left_grid {
+	float: right;
+}
+.offerblock .rght_grid {
+	float: left;
+}
+.head_title:after {
+	left: auto;
+	right: 0;
+}
+
+.three_grid .grid {
+	float: right;
+}
+.contact_info li {
+	padding-right: 28px;
+}
+.contact_info li:before {
+	left: auto;
+	right: 0;
+}
+.news-subscribe-form input[type="submit"], .news-subscribe-form input[type="button"] {
+	border-radius: 2px 0 0 2px;
+}
+.news-subscribe-form input[type="text"] {
+	border-radius: 0px 2px 2px 0px;
+}
+.footer-menu a:hover:after {
+	transform: translateX(-6px);
+}
+#menu-v > li > a {
+	text-align: right;
+}
+.nav-flyout {
+	left: auto;
+	right: 100%;
+}
+#menu-v > li > a:after {
+	left:20px;
+	right: auto;
+}
+
+
+.u-vmenu ul li a span.parrot_arrow{ right: auto; left:15px;}
+
+.siteForm select{ background: url("../images/select-bg.png") no-repeat 10px center; padding-left:25px;}
+.loginForm .siteForm .formTable tr td{ padding-left:0; padding-right:10px;}
+.user-wrapper .avatar{ margin-left:15px; margin-right:0;}
+.nav-list li .icn-svg{ margin-right:0; margin-left:10px;}
+.dropdown-box{left:0; right:auto;}
+
+.vertical-slider .slick-arrow { 
+	left: 30px; 
+	right: auto;
+}
+.vertical-slider .slick-prev.slick-arrow{
+	left: 0px;
+	right: auto;
+}
+.searchBox input[type="submit"]{
+	float: left;
+}
+.cms ul li { 
+    padding: 0 15px 7px 0; 
+}
+.cms ul li::before{
+	right: 0;
+	left: auto;
+}
+.togl-menu{
+	float: right;
+	left: auto;
+	right: 5px;
+}
+@media (min-width: 768px) and (max-width: 990px){
+	.logo {
+		margin: 10px 25px 0 0;
+	}
+}
+@media(max-width: 767px){
+	.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+		float: none;
+	}
+	
+	/*[ fixed blank space on mobile */
+	.menuBar{    transform: translate(0, 0px);  -webkit-transform: translate(0, 0px); right:-100%;}
+	.menuBar.active{right:0;}
+	.logo{margin-left:0; margin-right:25px;}
+	/* ] */
+	
+}
