@@ -2938,3 +2938,11 @@ padding-right: 40px;
 }
 
 .home-slide .slide-item{background-size:cover;}
+
+
+.main-warehouse-header, .main-warehouse-header .price-well {
+    background: white !important;
+}
+.main-warehouse-header .price-well, .main-warehouse-header .warehouse-name{
+    color: #7f7f7f !important;
+}
